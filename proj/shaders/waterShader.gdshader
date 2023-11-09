@@ -9,7 +9,9 @@ uniform sampler2D normalTex2;
 uniform vec2 wave_dir2 = vec2(0.0, 1.0);
 uniform float wave_speed : hint_range(0.0, 0.2) = 0.015;
 varying vec3 uv_world_pos;
-uniform float wave_scale : hint_range(0.0,10.0) = 4.0;
+uniform float wave_scale : hint_range(0.0,100.0) = 4.0;
+
+uniform vec4 tint_color : hint_color = vec4( 0.3, 0.4, 0.45, 1.0);
 
 void vertex(){
 	//VERTEX.y += -1.0+sin(TIME*0.01*VERTEX.x)+cos(TIME*0.01*VERTEX.z);
@@ -43,7 +45,7 @@ void fragment(){
 	
 	vec3 base_color = vec3(0,0.2,1);
 	vec3 deep_colour = vec3(0.0,0.0,0.5);
-	float basic_fresnel = fresnel(3.0, NORMAL, VIEW);
+	float basic_fresnel = fresnel(5.0, NORMAL, VIEW);
 	
 	// trying flipbook stuff in this block
 	/*
@@ -51,25 +53,25 @@ void fragment(){
 	vec4 flip_texture = texture(waterTexture, flip_uv*waterRange);
 	NORMAL = flip_texture.rgb;
 	*/
-	
 	vec2 normal_offset1 = (TIME * wave_dir1) * wave_speed;
 	vec2 normal_offset2 = (TIME * wave_dir2) * wave_speed;
 	vec3 normal_blend = mix(texture(normalTex1, uv_world_pos.xz / wave_scale + normal_offset1), texture(normalTex2, uv_world_pos.xz / wave_scale + normal_offset2), 0.5).rgb;
+	normalize(normal_blend);
 	NORMAL = normal_blend;
 	
+	//basic_fresnel = fresnel(5.0, NORMAL, VIEW);
 	
-	//float basic_fresnel = fresnel(3.0, NORMAL, VIEW);
-	
-	vec3 combo = mix(base_color,deep_colour,1.0-max(VIEW*NORMAL,0.0))+basic_fresnel;
+	vec3 combo = mix(base_color,deep_colour,0.9)+basic_fresnel;
 	//ALBEDO = base_color + basic_fresnel;
 	ALBEDO = combo;
+	
 	/*
 	if(ALBEDO.r < 0.6 && ALBEDO.g <0.6 && ALBEDO.b<0.6)
 	{
 		ALPHA = 0.7;
 	}else{ALPHA=0.9;}
 	*/
-	ALPHA = 0.9;
+	ALPHA = 0.95;
 	
    
 }
