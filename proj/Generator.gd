@@ -226,7 +226,8 @@ func generateClouds():
 		cloudInstance.translation = Vector3(x,y,z)
 		cloudInstance.add_to_group("clouds")
 		add_child(cloudInstance)
-	
+
+# function allows the clouds to be deleted, as the instances are created in a loop, add them to group
 func resetClouds():
 	for N in self.get_children():
 		if(N.is_in_group("clouds")):
