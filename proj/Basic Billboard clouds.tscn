@@ -21,7 +21,7 @@ material = SubResource( 9 )
 size = Vector2( 6, 6 )
 
 [node name="Basic Billboard clouds" type="Particles"]
-amount = 300
+amount = 150
 lifetime = 30.93
 explosiveness = 0.98
 process_material = SubResource( 8 )

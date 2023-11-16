@@ -86,7 +86,7 @@ func setPersistance(newPersistance):
 # Cloud export vars
 export (int) var numberOfClouds = 10 setget setCloudNum
 func setCloudNum(newNumberOfClouds):
-	#resetClouds
+	resetClouds()
 	numberOfClouds = newNumberOfClouds
 	generateClouds()
 
@@ -216,7 +216,7 @@ func initialiseMesh():
 # cloud stuff? gets called when changing number of clouds in editor
 func generateClouds():
 	var rng = RandomNumberGenerator.new()
-	for i in range(10):
+	for i in range(numberOfClouds):
 		
 		var cloudInstance = cloud.instance()
 		var x : float = rng.randf_range(-viewDistance/2.0,viewDistance/2.0)
@@ -224,13 +224,13 @@ func generateClouds():
 		var z : float = rng.randf_range(-viewDistance/2.0,viewDistance/2.0)
 		
 		cloudInstance.translation = Vector3(x,y,z)
+		cloudInstance.add_to_group("clouds")
 		add_child(cloudInstance)
 	
-	return 
-	
 func resetClouds():
-	for i in range (numberOfClouds):
-		return
+	for N in self.get_children():
+		if(N.is_in_group("clouds")):
+			N.queue_free()
 		
 # This function will clean the mesh node to be rebuilt with new values
 func resetMesh():
