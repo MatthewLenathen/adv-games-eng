@@ -48,6 +48,8 @@ float fresnel(float cos_theta, float n1, float n2)
 
 void fragment(){
 	// Found on a couple shaders, seems to be a common usage
+	// reference this
+	// need to understand how this works
 	vec4 depth_tex = texture(DEPTH_TEXTURE, SCREEN_UV) * 2.0 - 1.0;
 	vec4 world_coord = INV_PROJECTION_MATRIX * vec4(SCREEN_UV, depth_tex.r, 1.0);
 	world_coord.xyz /= world_coord.w;
@@ -74,4 +76,5 @@ void fragment(){
 	ROUGHNESS = roughness;
 	NORMALMAP = normal_blend;
 	ALPHA = 0.95;
+	// potential for depth alpha
 }

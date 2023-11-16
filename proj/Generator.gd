@@ -9,6 +9,8 @@ var UVs : PoolVector2Array
 var normals : PoolVector3Array
 var indices : PoolIntArray
 var initialised = false
+var particle_node : Particles = null
+var particle_list : Array = null
 
 # All of the following are the variables that can change the mesh, so we need them to be settable and gettable.
 # The export keyword means that they will be saved along with the scene, and editable in the tool 
@@ -79,6 +81,14 @@ func setPersistance(newPersistance):
 	resetMesh()
 	persistence = newPersistance
 	initialiseMesh()
+	
+	
+# Cloud export vars
+export (int) var numberOfClouds = 10 setget setCloudNum
+func setCloudNum(newNumberOfClouds):
+	#resetClouds
+	numberOfClouds = newNumberOfClouds
+	generateClouds()
 
 # This function generates the vertices based on the view distance and noise generator
 func genVertices():
@@ -203,6 +213,19 @@ func initialiseMesh():
 	mesh_node.mesh = genMesh()
 	initialised = true
 
+# cloud stuff? gets called when changing number of clouds in editor
+func generateClouds():
+	var rng = RandomNumberGenerator.new()
+
+	
+	
+	
+	
+	return 
+	
+func resetClouds():
+	for i in range (numberOfClouds):
+		
 # This function will clean the mesh node to be rebuilt with new values
 func resetMesh():
 	if mesh_node != null and initialised:
