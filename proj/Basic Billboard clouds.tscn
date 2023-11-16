@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://FX_CloudAlpha01.png" type="Texture" id=1]
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 2
+emission_box_extents = Vector3( 8, 6, 8 )
+gravity = Vector3( 0, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=10]
+material = SubResource( 9 )
+size = Vector2( 6, 6 )
+
+[node name="Basic Billboard clouds" type="Particles"]
+amount = 300
+lifetime = 30.93
+explosiveness = 0.98
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 10 )

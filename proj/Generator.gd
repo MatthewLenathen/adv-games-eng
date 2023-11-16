@@ -9,8 +9,8 @@ var UVs : PoolVector2Array
 var normals : PoolVector3Array
 var indices : PoolIntArray
 var initialised = false
-var particle_node : Particles = null
-var particle_list : Array = null
+var cloud : PackedScene = load("res://Basic Billboard clouds.tscn")
+var particle_list : Array
 
 # All of the following are the variables that can change the mesh, so we need them to be settable and gettable.
 # The export keyword means that they will be saved along with the scene, and editable in the tool 
@@ -216,15 +216,21 @@ func initialiseMesh():
 # cloud stuff? gets called when changing number of clouds in editor
 func generateClouds():
 	var rng = RandomNumberGenerator.new()
-
-	
-	
-	
+	for i in range(10):
+		
+		var cloudInstance = cloud.instance()
+		var x : float = rng.randf_range(-viewDistance/2.0,viewDistance/2.0)
+		var y : float = rng.randf_range(60,70)
+		var z : float = rng.randf_range(-viewDistance/2.0,viewDistance/2.0)
+		
+		cloudInstance.translation = Vector3(x,y,z)
+		add_child(cloudInstance)
 	
 	return 
 	
 func resetClouds():
 	for i in range (numberOfClouds):
+		return
 		
 # This function will clean the mesh node to be rebuilt with new values
 func resetMesh():
