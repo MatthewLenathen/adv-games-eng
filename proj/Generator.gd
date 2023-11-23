@@ -224,6 +224,8 @@ func generateClouds():
 		var z : float = rng.randf_range(-viewDistance/2.0,viewDistance/2.0)
 		
 		cloudInstance.translation = Vector3(x,y,z)
+		cloudInstance.rotation = Vector3(0,x,0)
+		
 		cloudInstance.add_to_group("clouds")
 		add_child(cloudInstance)
 
