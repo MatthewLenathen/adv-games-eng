@@ -101,13 +101,8 @@ func genVertices():
 			# height bias is applied directly to the noise value, before it gets multiplied by height
 			# This makes valleys deeper and heights steeper, more extreme values, can be tuned
 			var h = noise.get_noise_2d(x, y) * heightBias
-			
 			h = h * h * sign(h) # this line squares h, but correctly keeps the sign
-			# e.g. h = -30 * -30 * sign(-30) 
-			# h = -30 * -30 * -1
-			# h = -900
 			h *= height
-
 			# append vertices to array
 			vertices.append(Vector3(x-centreOffset,h,y-centreOffset))
 
@@ -227,6 +222,7 @@ func generateClouds():
 		cloudInstance.rotation = Vector3(0,x,0)
 		
 		cloudInstance.add_to_group("clouds")
+		
 		add_child(cloudInstance)
 
 # function allows the clouds to be deleted, as the instances are created in a loop, add them to group

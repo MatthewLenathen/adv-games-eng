@@ -59,13 +59,13 @@ void fragment() {
 	
 	// Mix the textures based on slope, height, and beach presence
 	// Here, the base terrain is rock mixed with grass, but no grass where it cant grow (slopes)
-    vec3 terrain_color = mix(rockColour, grassColour, (1.0 - slope));
+    vec3 terrain_colour = mix(rockColour, grassColour, (1.0 - slope));
 	
 	// The next mix is getting the beach in (between the beach ranges)
-    terrain_color = mix(terrain_color, sandColour, (1.0-beachMix)); 
+    terrain_colour = mix(terrain_colour, sandColour, (1.0-beachMix)); 
 	
 	// The final mix is getting the snow in, depending on height      
-    terrain_color = mix(terrain_color, snowColour, snowMix);
+    terrain_colour = mix(terrain_colour, snowColour, snowMix);
 	
-	ALBEDO = terrain_color;
+	ALBEDO = terrain_colour;
 }
