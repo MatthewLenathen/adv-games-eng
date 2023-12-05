@@ -22,7 +22,7 @@ varying vec3 eye_vec;
 varying vec3 uv_world_pos;
 
 vec3 getPosition(mat4 camera) {
-	return (-camera[3] * camera).xyz;
+	return (camera[3]).xyz;
 	}
 
 
@@ -48,8 +48,6 @@ float fresnel(float cos_theta, float n1, float n2)
 
 void fragment(){
 	// Found on a couple shaders, seems to be a common usage
-	// reference this
-	// need to understand how this works
 	vec4 depth_tex = texture(DEPTH_TEXTURE, SCREEN_UV) * 2.0 - 1.0; // Gets the depth value from depth buffer at current UV coords, normalised from 0-1 to -1,1
 	vec4 world_coord = INV_PROJECTION_MATRIX * vec4(SCREEN_UV, depth_tex.r, 1.0); // Converts from screen space to world space, r channel holds depth info
 	world_coord.xyz /= world_coord.w; // gets it from clip space to world space
@@ -82,7 +80,7 @@ void fragment(){
 	
 	// Use smoothstep to interpolate smoothly between full transparency and no transparency
 	// clamp for usage in alpha
-	float transparency = clamp(smoothstep(0,40,depth_from_surface),0,1);
+	float transparency = clamp(smoothstep(0,50,depth_from_surface),0,1);
 
 	// Use the transparency value for the ALPHA component
 	ALPHA = transparency;
