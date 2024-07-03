@@ -14,4 +14,5 @@ Created a 3D procedural landmass generator in godot 3.5.4 for the advanced games
 ![dawnclouds](https://github.com/MatthewLenathen/adv-games-eng/assets/71607754/46bf05ad-7b49-4ebd-957e-2e377df50dee)
 ![transparancy](https://github.com/MatthewLenathen/adv-games-eng/assets/71607754/f1457ef1-3252-4bae-bb07-53235acf8892)
 ![terrain](https://github.com/MatthewLenathen/adv-games-eng/assets/71607754/178a78b1-08cf-4ccf-b52f-a046d9186fa9)
+![dusk](https://github.com/MatthewLenathen/adv-games-eng/assets/71607754/ababb5ae-491e-41b5-b35c-6782e9b6e88e)
 ![foam](https://github.com/MatthewLenathen/adv-games-eng/assets/71607754/1fa17278-5902-43a8-83ee-57b7672f9368)
